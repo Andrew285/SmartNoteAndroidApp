@@ -2,6 +2,7 @@
 agp = "8.7.3"
 foundation = "1.7.6"
 fragmentKtx = "1.8.5"
+googleMaterial = "1.2.0"
 hiltAndroidCompiler = "2.51.1"
 kotlin = "1.9.25"
 coreKtx = "1.15.0"
@@ -46,6 +47,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
+material-v120 = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

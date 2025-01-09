@@ -56,6 +56,9 @@ kapt {
 
 dependencies {
 
+    // Material Design Library
+    implementation(libs.material.v120)
+
     // Firebase
     implementation(libs.firebase.auth)
 
