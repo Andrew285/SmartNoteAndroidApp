@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">SmartNoteApp</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  RegisterFragment  -->
+    <string name="enter_your_username_hint">Enter Your Username</string>
+    <string name="enter_your_email_hint">Enter Your Email</string>
+    <string name="enter_your_phone_hint">Enter Your Phone</string>
+    <string name="enter_your_password_hint">Enter Your Password</string>
+    <string name="signup">Signup</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="login_with_Google">Login with Google</string>
+    <string name="login_with_Facebook">Login with Facebook</string>
+    <string name="or_divider">Or</string>
+
+    <!--  LoginFragment  -->
+    <string name="login">Login</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="enter_your_username_or_email_hint">Enter Your Username/Email</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
 </resources>
