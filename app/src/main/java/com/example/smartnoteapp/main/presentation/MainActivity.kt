@@ -9,7 +9,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.smartnoteapp.R
 import com.example.smartnoteapp.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
@@ -33,6 +35,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.item_search -> {
                     findNavController(R.id.fragmentMainContainerView).navigate(R.id.searchFragment)
+                    true
+                }
+                R.id.item_create_note -> {
+                    findNavController(R.id.fragmentMainContainerView).navigate(R.id.createNoteFragment)
                     true
                 }
                 R.id.item_favourites -> {

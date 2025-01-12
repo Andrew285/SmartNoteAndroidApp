@@ -9,6 +9,10 @@
         android:title="@string/bottom_nav_search"
         android:icon="@drawable/magnifying_glass"/>
     <item
+        android:id="@+id/item_create_note"
+        android:title="@string/bottom_nav_add_note"
+        android:icon="@drawable/edit"/>
+    <item
         android:id="@+id/item_favourites"
         android:title="@string/bottom_nav_favourites"
         android:icon="@drawable/heart"/>

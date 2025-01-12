@@ -59,6 +59,9 @@ dependencies {
     // Material Design Library
     implementation(libs.material.v120)
 
+    // Circular Images
+    implementation(libs.hdodenhof.circleimageview)
+
     // Firebase
     implementation(libs.firebase.auth)
 
