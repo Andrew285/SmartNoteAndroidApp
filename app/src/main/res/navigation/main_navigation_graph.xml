@@ -37,12 +37,12 @@
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/createNoteFragment"
-        android:name="com.example.smartnoteapp.create_note.CreateNoteFragment"
+        android:name="com.example.smartnoteapp.notes.presentation.create_note.CreateNoteFragment"
         android:label="fragment_create_note"
         tools:layout="@layout/fragment_create_note" />
     <fragment
         android:id="@+id/myNotesFragment"
-        android:name="com.example.smartnoteapp.profile.presentation.my_notes.MyNotesFragment"
+        android:name="com.example.smartnoteapp.notes.presentation.my_notes.MyNotesFragment"
         android:label="fragment_my_notes"
         tools:layout="@layout/fragment_my_notes" >
         <action

@@ -56,6 +56,10 @@ kapt {
 
 dependencies {
 
+    // Room Database
+    implementation(libs.room.runtime)
+    implementation(libs.androidx.room.ktx)
+
     // Material Design Library
     implementation(libs.material.v120)
 
@@ -74,6 +78,7 @@ dependencies {
 
     //Hilt
     implementation(libs.hilt.android)
+    implementation(libs.firebase.firestore.ktx)
     kapt(libs.hilt.android.compiler)
 
     //Kotlin Coroutines

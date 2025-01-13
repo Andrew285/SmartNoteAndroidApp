@@ -19,10 +19,12 @@ constraintlayout = "2.2.0"
 jetbrainsKotlinJvm = "1.9.24"
 materialVersion = "1.7.6"
 navigationFragment = "2.8.5"
+roomRuntimeVersion = "2.6.1"
 runtime = "1.7.6"
 ui = "1.7.6"
 googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.1.0"
+firebaseFirestoreKtx = "25.1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -34,6 +36,7 @@ androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragme
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragment" }
 androidx-navigation-ui = { module = "androidx.navigation:navigation-ui", version.ref = "navigationFragment" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragment" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntimeVersion" }
 androidx-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "runtime" }
 androidx-ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
 androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "ui" }
@@ -50,6 +53,8 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 material-v120 = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntimeVersion" }
+firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

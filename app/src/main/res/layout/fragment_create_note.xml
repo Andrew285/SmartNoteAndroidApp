@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".create_note.CreateNoteFragment"
+    tools:context=".notes.presentation.create_note.CreateNoteFragment"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -33,9 +33,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.google.android.material.chip.ChipGroup
+    <LinearLayout
+        android:id="@+id/categoriesContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_category"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/categoriesChipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
