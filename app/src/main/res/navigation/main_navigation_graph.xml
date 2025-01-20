@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_myNotesFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_myNotesFragment_to_ownNoteFragment"
+            app:destination="@id/ownNoteFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -66,5 +69,17 @@
         <action
             android:id="@+id/action_activityFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ownNoteFragment"
+        android:name="com.example.smartnoteapp.notes.presentation.note.OwnNoteFragment"
+        android:label="fragment_own_note"
+        tools:layout="@layout/fragment_own_note" >
+        <action
+            android:id="@+id/action_ownNoteFragment_to_myNotesFragment"
+            app:destination="@id/myNotesFragment" />
+        <argument
+            android:name="note"
+            app:argType="com.example.smartnoteapp.notes.domain.models.Note" />
     </fragment>
 </navigation>

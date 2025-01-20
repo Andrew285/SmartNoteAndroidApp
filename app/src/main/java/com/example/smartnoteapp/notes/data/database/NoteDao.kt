@@ -1,26 +1,59 @@
 package com.example.smartnoteapp.notes.data.database
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
-import com.example.smartnoteapp.notes.domain.models.Note
+import com.example.smartnoteapp.notes.data.models.CategoryEntity
+import com.example.smartnoteapp.notes.data.models.NoteCategoryCrossRef
+import com.example.smartnoteapp.notes.data.models.NoteEntity
+import com.example.smartnoteapp.notes.data.models.relations.NoteWithCategories
 
 @Dao
 interface NoteDao {
-    @Insert
-    fun insert(note: Note)
 
+    // INSERT
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertNote(note: NoteEntity): Long
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertCategory(category: CategoryEntity): Long
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertNoteCategoryCrossRef(crossRef: NoteCategoryCrossRef)
+
+    // UPDATE
     @Update
-    fun update(note: Note)
+    fun updateNote(note: NoteEntity)
 
-    @Delete
-    fun delete(noteId: Int)
+    // DELETE
+    @Query("DELETE FROM notes WHERE id = :noteId")
+    fun deleteNote(noteId: Long)
 
+    @Query("DELETE FROM notes")
+    fun deleteAllNotes()
+
+    @Query("DELETE FROM note_categories_refs")
+    suspend fun deleteAllNoteCategoryRefs()
+
+    @Query("DELETE FROM categories")
+    suspend fun deleteAllCategories()
+
+    // SELECT (GET)
     @Query("SELECT * FROM notes WHERE id = :noteId")
-    fun getNoteById(noteId: Int)
+    fun getNoteWithCategoriesById(noteId: Long): NoteWithCategories
 
+    @Transaction
     @Query("SELECT * FROM notes")
-    fun getAllNotes()
+    fun getAllNotesWitCategories(): List<NoteWithCategories>
+
+    @Transaction
+    @Query("SELECT * FROM categories")
+    fun getAllCategories(): List<CategoryEntity>
+
+    @Transaction
+    @Query("SELECT * FROM note_categories_refs")
+    fun getAllNoteCategoryRefs(): List<NoteCategoryCrossRef>
 }

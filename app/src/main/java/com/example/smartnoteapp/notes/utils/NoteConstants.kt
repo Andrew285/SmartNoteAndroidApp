@@ -1,5 +1,7 @@
 package com.example.smartnoteapp.notes.utils
 
 object NoteConstants {
-    val CATEGORIES_COLLECTION = "categories"
+    const val CATEGORIES_COLLECTION = "categories"
+    const val NOTES_COLLECTION = "notes"
+    const val LOG_FIREBASE_FIRESTORE = "FIREBASE_FIRESTORE"
 }

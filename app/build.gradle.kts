@@ -56,9 +56,17 @@ kapt {
 
 dependencies {
 
+    // Glide Library
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
+
+    // Picasso Library
+    implementation(libs.picasso)
+
     // Room Database
     implementation(libs.room.runtime)
     implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
 
     // Material Design Library
     implementation(libs.material.v120)
@@ -68,6 +76,7 @@ dependencies {
 
     // Firebase
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore.ktx)
 
     // Jetpack Compose
     implementation(libs.androidx.runtime)
@@ -78,7 +87,7 @@ dependencies {
 
     //Hilt
     implementation(libs.hilt.android)
-    implementation(libs.firebase.firestore.ktx)
+//    implementation(libs.androidx.hilt.work)
     kapt(libs.hilt.android.compiler)
 
     //Kotlin Coroutines

@@ -1,26 +1,25 @@
-package com.example.smartnoteapp.notes.presentation.create_note
+package com.example.smartnoteapp.notes.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.smartnoteapp.core.presentation.OperationStatus
-import com.example.smartnoteapp.core.utils.CustomToast
 import com.example.smartnoteapp.notes.domain.models.Category
-import com.example.smartnoteapp.notes.domain.models.Note
+import com.example.smartnoteapp.notes.domain.usecases.categories.GetCategoryByNameUseCase
 import com.example.smartnoteapp.notes.utils.NoteConstants
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class NotesViewModel: ViewModel() {
-    private var _categories = MutableLiveData<List<Category>>()
+class CategoriesViewModel @Inject constructor(
+    private val getCategoryByNameUseCase: GetCategoryByNameUseCase
+): ViewModel() {
+
+    private val _categories = MutableLiveData<List<Category>>()
     val categories: LiveData<List<Category>> = _categories
-
-    private var _status = MutableStateFlow<OperationStatus>(OperationStatus.Loading)
-    val status: StateFlow<OperationStatus> = _status
 
     suspend fun loadCategories() {
         val db = Firebase.firestore
@@ -38,13 +37,14 @@ class NotesViewModel: ViewModel() {
                 }
             }
         } catch (e: Exception) {
-            _status.value = OperationStatus.Error(e.message.toString())
+//            _status.value = OperationStatus.Error(e.message.toString())
+            Log.d("TAGY", e.message.toString())
         }
 
         _categories.postValue(categories)
     }
 
-    fun addNote(note: Note) {
-
+    suspend fun getCategoryByName(name: String): Category? {
+        return getCategoryByNameUseCase(name)
     }
 }

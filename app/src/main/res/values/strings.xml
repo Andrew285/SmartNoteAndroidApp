@@ -58,4 +58,14 @@
 
     <!--  Custom Text Layout  -->
     <string name="toast_text_example">Lorem Ipsum is simply dummy text</string>
+
+    <!--  Item Note Action Layout  -->
+    <string name="example_like_count">12356</string>
+
+    <!-- My Fragments   -->
+    <string name="example_hours_ago">12h ago</string>
+
+    <!-- Own Note Fragment   -->
+    <string name="btn_post">Post</string>
+    <string name="btn_delete">Delete</string>
 </resources>
