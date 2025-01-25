@@ -30,6 +30,10 @@
             android:name=".main.presentation.MainActivity"
             android:exported="true">
         </activity>
-    </application>
 
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            tools:node="remove" />
+    </application>
 </manifest>

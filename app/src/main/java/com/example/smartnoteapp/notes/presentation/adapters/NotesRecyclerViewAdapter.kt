@@ -1,23 +1,19 @@
 package com.example.smartnoteapp.notes.presentation.adapters
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.graphics.scale
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.smartnoteapp.R
-import com.example.smartnoteapp.core.presentation.OnItemRecyclerViewClicked
+import com.example.smartnoteapp.core.presentation.OnItemViewClicked
 import com.example.smartnoteapp.core.utils.BitmapConverter
 import com.example.smartnoteapp.notes.domain.models.Note
-import java.io.File
 
 class NotesRecyclerViewAdapter(
     private var notes: List<Note>,
-    private val onItemClicked: OnItemRecyclerViewClicked
+    private val onItemClicked: OnItemViewClicked
 ): RecyclerView.Adapter<NotesRecyclerViewAdapter.NoteViewHolder>() {
 
     class NoteViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -27,7 +23,7 @@ class NotesRecyclerViewAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.simple_note_layout, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_my_note_layout, parent, false)
         return NoteViewHolder(view)
     }
 
@@ -45,7 +41,7 @@ class NotesRecyclerViewAdapter(
         holder.photoImageView.setImageBitmap(imageBitmap)
 
         holder.itemView.setOnClickListener {
-            onItemClicked.onItemClicked(position)
+            onItemClicked.handleClick(position)
         }
     }
 

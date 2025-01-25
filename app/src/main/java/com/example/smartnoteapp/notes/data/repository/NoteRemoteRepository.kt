@@ -1,6 +1,5 @@
 package com.example.smartnoteapp.notes.data.repository
 
-import android.net.Uri
 import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -15,34 +14,62 @@ import com.example.smartnoteapp.notes.utils.NoteConstants.NOTES_COLLECTION
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.tasks.await
 
 class NoteRemoteRepository: INoteRemoteRepository {
     private val firestoreDb = Firebase.firestore
     private val noteCollection = firestoreDb.collection(NOTES_COLLECTION)
 
-    override suspend fun addNote(note: Note) {
-        val documentId = note.id.toString()
-        val noteRemote = note.mapToRemote()
-        noteCollection
-            .document(documentId)
-            .set(noteRemote)
-            .addOnSuccessListener {
-                Log.d(LOG_FIREBASE_FIRESTORE, "DocumentSnapshot added with ID: $documentId")
-            }
-            .addOnFailureListener { e ->
-                Log.w(LOG_FIREBASE_FIRESTORE, "Error adding document", e)
-            }
+    override suspend fun addNote(note: Note): Result<Unit> {
+        return try {
+            val documentId = note.id.toString()
+            val noteRemote = note.mapToRemote()
+
+            noteCollection
+                .document(documentId)
+                .set(noteRemote)
+                .addOnSuccessListener {
+                    Log.d(LOG_FIREBASE_FIRESTORE, "DocumentSnapshot added with ID: $documentId")
+                }
+                .addOnFailureListener { e ->
+                    Log.w(LOG_FIREBASE_FIRESTORE, "Error adding document", e)
+                }
+            Result.success(Unit)
+
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 
-    override suspend fun editNote(note: Note) {
+
+    override suspend fun editNote(note: Note): Result<NoteRemote?> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteNote(noteId: Int) {
-        TODO("Not yet implemented")
+    override suspend fun deleteNote(noteId: Int): Result<NoteRemote?> {
+        return try {
+            val documentSnapshot = noteCollection
+                    .whereEqualTo("id", noteId)
+                    .get()
+                    .await()
+
+            var note: NoteRemote? = null
+            if (documentSnapshot != null) {
+                for (document in documentSnapshot.documents) {
+                    note = document.toObject(NoteRemote::class.java)
+                    noteCollection
+                        .document(document.id)
+                        .delete()
+                }
+            }
+
+            Result.success(note)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 
-    override suspend fun getNoteById(noteId: Int): Note {
+    override suspend fun getNoteById(noteId: Int): NoteRemote {
         TODO("Not yet implemented")
     }
 

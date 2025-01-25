@@ -25,18 +25,11 @@ class NotesRemotePagingSource(
             val limit = params.loadSize
 
             val snapshot = query
-//                .limit(limit.toLong())
-//                .startAt((currentPage - 1) * limit.toLong())
                 .get()
                 .await()
 
-//            val nextPage = if (notes.isNotEmpty()) {
-//                query.startAfter(currentPage.documents.last()).get().await()
-//            } else null
-
             val notes = snapshot.documents.mapNotNull {
                 it.toObject(NoteRemote::class.java)
-//                noteRemote?.mapToNote()
             }
 
             val nextPage = if (notes.size < limit) null else currentPage + 1

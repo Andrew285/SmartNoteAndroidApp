@@ -6,12 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.smartnoteapp.core.presentation.OperationStatus
 import com.example.smartnoteapp.notes.domain.models.Note
-import com.example.smartnoteapp.notes.domain.usecases.notes.AddNoteUseCase
-import com.example.smartnoteapp.notes.domain.usecases.notes.ClearDatabaseUseCase
-import com.example.smartnoteapp.notes.domain.usecases.notes.DeleteNoteUseCase
-import com.example.smartnoteapp.notes.domain.usecases.notes.GetAllNotesUseCase
-import com.example.smartnoteapp.notes.domain.usecases.notes.PostNoteUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.example.smartnoteapp.notes.domain.usecases.local_notes.AddNoteUseCase
+import com.example.smartnoteapp.notes.domain.usecases.local_notes.ClearDatabaseUseCase
+import com.example.smartnoteapp.notes.domain.usecases.local_notes.DeleteNoteUseCase
+import com.example.smartnoteapp.notes.domain.usecases.local_notes.GetAllNotesUseCase
+import com.example.smartnoteapp.notes.domain.usecases.remote_notes.PostNoteUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

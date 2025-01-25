@@ -8,15 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.smartnoteapp.core.presentation.OnItemRecyclerViewClicked
+import com.example.smartnoteapp.core.presentation.OnItemViewClicked
 import com.example.smartnoteapp.databinding.FragmentMyNotesBinding
 import com.example.smartnoteapp.notes.domain.models.Note
 import com.example.smartnoteapp.notes.presentation.adapters.NotesRecyclerViewAdapter
-import com.example.smartnoteapp.notes.presentation.NotesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MyNotesFragment : Fragment(), OnItemRecyclerViewClicked {
+class MyNotesFragment : Fragment(), OnItemViewClicked {
     private lateinit var binding: FragmentMyNotesBinding
     private val myNotesViewModel: MyNotesViewModel by viewModels()
     private lateinit var notesAdapter: NotesRecyclerViewAdapter
@@ -49,7 +48,7 @@ class MyNotesFragment : Fragment(), OnItemRecyclerViewClicked {
         notesAdapter.notifyDataSetChanged()
     }
 
-    override fun onItemClicked(position: Int) {
+    override fun handleClick(position: Int) {
         val noteToPass = noteList[position]
         val action = MyNotesFragmentDirections.actionMyNotesFragmentToOwnNoteFragment(noteToPass)
         findNavController().navigate(action)

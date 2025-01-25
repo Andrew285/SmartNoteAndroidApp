@@ -24,7 +24,7 @@
             android:paddingStart="20dp">
 
             <TextView
-                android:id="@+id/nameEditText"
+                android:id="@+id/nameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/example_user_name"
@@ -32,8 +32,24 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/nickNameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/example_user_nickname"/>
+
+            <TextView
+                android:id="@+id/ageTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="@string/example_user_age"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/statusTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
                 android:text="@string/example_user_status"/>
 
         </LinearLayout>

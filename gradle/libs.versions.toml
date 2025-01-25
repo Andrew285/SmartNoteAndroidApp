@@ -6,10 +6,13 @@ compiler = "4.15.1"
 foundation = "1.7.6"
 fragmentKtx = "1.8.5"
 glide = "4.16.0"
+googleGson = "2.10.1"
 googleMaterial = "1.2.0"
 hiltAndroidCompiler = "2.51.1"
+hiltCompiler = "1.1.0"
 hiltLifecycleViewmodelVersion = "1.0.0-alpha03"
 hiltWork = "1.2.0"
+hiltWorkVersion = "1.1.0"
 kotlin = "1.9.25"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -35,6 +38,9 @@ googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.1.0"
 firebaseFirestoreKtx = "25.1.1"
 firebaseStorageKtx = "21.0.1"
+workRuntimeKtx = "2.10.0"
+coreKtxVersion = "1.6.1"
+hiltCommon = "1.2.0"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
@@ -42,8 +48,10 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 androidx-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "foundation" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 androidx-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltWork" }
+androidx-hilt-compiler-v110 = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompiler" }
 androidx-hilt-lifecycle-viewmodel = { module = "androidx.hilt:hilt-lifecycle-viewmodel", version.ref = "hiltLifecycleViewmodelVersion" }
 androidx-hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hiltWork" }
+androidx-hilt-work-v110 = { module = "androidx.hilt:hilt-work", version.ref = "hiltWorkVersion" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-material = { module = "androidx.compose.material:material", version.ref = "materialVersion" }
@@ -58,8 +66,10 @@ androidx-runtime = { module = "androidx.compose.runtime:runtime", version.ref = 
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayoutVersion" }
 androidx-ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
 androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "ui" }
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+google-gson = { module = "com.google.code.gson:gson", version.ref = "googleGson" }
 hdodenhof-circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageviewVersion" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroidCompiler" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompiler" }
@@ -78,6 +88,8 @@ picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntimeVersion" }
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx", version.ref = "firebaseStorageKtx" }
+core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "coreKtxVersion" }
+androidx-hilt-common = { group = "androidx.hilt", name = "hilt-common", version.ref = "hiltCommon" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.smartnoteapp.R
@@ -15,8 +18,8 @@ import com.example.smartnoteapp.core.utils.BitmapConverter
 import com.example.smartnoteapp.core.utils.CustomToast
 import com.example.smartnoteapp.databinding.FragmentOwnNoteBinding
 import com.example.smartnoteapp.notes.domain.models.Note
-import com.example.smartnoteapp.notes.presentation.NotesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class OwnNoteFragment : Fragment() {
@@ -32,6 +35,14 @@ class OwnNoteFragment : Fragment() {
     ): View? {
         binding = FragmentOwnNoteBinding.inflate(layoutInflater)
 
+        fetchData()
+        setClickListeners()
+        setObserveData()
+
+        return binding.root
+    }
+
+    private fun fetchData() {
         with (binding) {
             currentNote = fragmentArgs.note
             currentNote?.let { it ->
@@ -41,19 +52,47 @@ class OwnNoteFragment : Fragment() {
                 val imageBitmap = BitmapConverter.converterStringToBitmap(it.image)
                 photoImageView.setImageBitmap(imageBitmap)
             }
+        }
+    }
 
-            binding.postBtn.setOnClickListener {
-                ownNotesViewModel.notesViewModel.postNote(currentNote!!)
-                CustomToast.makeText(requireContext(), getString(R.string.note_posted_successful), CustomToast.ToastType.SUCCESS)
+    @RequiresApi(Build.VERSION_CODES.Q)
+    private fun setClickListeners() {
+        with (binding) {
+            postBtn.setOnClickListener {
+                val delayDialog = PostNoteDelayDialog()
+                delayDialog.onDelaySelected = { timeToDelay ->
+                    ownNotesViewModel.postNote(currentNote!!, timeToDelay)
+                }
+                delayDialog.show(parentFragmentManager, "DelayDialog")
             }
 
-            binding.deleteBtn.setOnClickListener {
-                ownNotesViewModel.notesViewModel.deleteNote(currentNote?.id!!)
+            deleteBtn.setOnClickListener {
+                ownNotesViewModel.deleteNote(currentNote?.id!!)
                 CustomToast.makeText(requireContext(), getString(R.string.note_deleted), CustomToast.ToastType.SUCCESS)
                 findNavController().navigate(R.id.action_ownNoteFragment_to_myNotesFragment)
             }
         }
+    }
 
-        return binding.root
+    @RequiresApi(Build.VERSION_CODES.Q)
+    private fun setObserveData() {
+        lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                ownNotesViewModel.notePostState.collect { postState ->
+                    when (postState) {
+                        is PostState.Posted -> {
+                            CustomToast.makeText(requireContext(), getString(R.string.note_posted_successful), CustomToast.ToastType.SUCCESS)
+                        }
+                        is PostState.Delayed -> {
+                            CustomToast.makeText(requireContext(), postState.message, CustomToast.ToastType.INFO)
+                        }
+                        is PostState.Failed -> {
+                            CustomToast.makeText(requireContext(), postState.message, CustomToast.ToastType.ERROR)
+                        }
+                        is PostState.Loading -> { }
+                    }
+                }
+            }
+        }
     }
 }

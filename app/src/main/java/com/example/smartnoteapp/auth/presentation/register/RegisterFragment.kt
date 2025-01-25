@@ -80,10 +80,11 @@ class RegisterFragment : Fragment() {
                 registerViewModel.signUpState.collect { state ->
                     when (state) {
                         is SignUpState.Success<*> -> {
+                            CustomToast.makeText(requireContext(), resources.getString(R.string.signup_successfully), CustomToast.ToastType.ERROR)
                             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                         }
                         is SignUpState.Error -> {
-                            CustomToast.makeText(requireContext(), resources.getString(R.string.signup_error), CustomToast.ToastType.ERROR)
+                            CustomToast.makeText(requireContext(), state.message, CustomToast.ToastType.ERROR)
                         }
                         else -> {}
                     }

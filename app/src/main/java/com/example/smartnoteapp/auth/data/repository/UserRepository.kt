@@ -21,7 +21,7 @@ class UserRepository: IUserRepository {
         password: String,
         onResult: (Result<FirebaseUser?>) -> Unit
     ) {
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val user = firebaseAuth.currentUser
                 onResult(Result.success(user))
@@ -51,7 +51,7 @@ class UserRepository: IUserRepository {
     }
 
     override fun signOutUser() {
-        TODO("Not yet implemented")
+        firebaseAuth.signOut()
     }
 
     override fun getCurrentUser(): FirebaseUser? {

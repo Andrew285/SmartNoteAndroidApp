@@ -14,7 +14,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.smartnoteapp.notes.presentation.home_notes.HomeFragment"
         android:label="fragment_posts"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_postedNoteFragment"
+            app:destination="@id/postedNoteFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.smartnoteapp.profile.presentation.ProfileFragment"
@@ -82,6 +86,18 @@
         <action
             android:id="@+id/action_ownNoteFragment_to_myNotesFragment"
             app:destination="@id/myNotesFragment" />
+        <argument
+            android:name="note"
+            app:argType="com.example.smartnoteapp.notes.domain.models.Note" />
+    </fragment>
+    <fragment
+        android:id="@+id/postedNoteFragment"
+        android:name="com.example.smartnoteapp.notes.presentation.posted_note.PostedNoteFragment"
+        android:label="fragment_posted_note"
+        tools:layout="@layout/fragment_posted_note" >
+        <action
+            android:id="@+id/action_postedNoteFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
         <argument
             android:name="note"
             app:argType="com.example.smartnoteapp.notes.domain.models.Note" />

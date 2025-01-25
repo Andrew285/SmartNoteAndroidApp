@@ -56,6 +56,14 @@ kapt {
 
 dependencies {
 
+    // WorkManager
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.androidx.hilt.work.v110)
+    kapt(libs.androidx.hilt.compiler)
+
+    // Gson
+    implementation(libs.google.gson)
+
     // SwipeRefreshLayout
     implementation(libs.androidx.swiperefreshlayout)
 
@@ -65,6 +73,9 @@ dependencies {
     // Glide Library
     implementation(libs.glide)
     implementation(libs.firebase.storage.ktx)
+    implementation(libs.core.ktx)
+    implementation(libs.androidx.hilt.common)
+    implementation(libs.androidx.hilt.work)
     annotationProcessor(libs.compiler)
 
     // Picasso Library

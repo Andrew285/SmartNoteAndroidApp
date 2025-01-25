@@ -15,7 +15,7 @@
         <LinearLayout
             android:id="@+id/photoContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="230dp"
             android:background="@color/light_gray"
             android:layout_gravity="center_horizontal">
 

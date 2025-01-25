@@ -13,6 +13,7 @@
     <string name="login_with_Facebook">Login with Facebook</string>
     <string name="or_divider">Or</string>
     <string name="signup_error">Registration is failed</string>
+    <string name="signup_successfully">You\'ve been signed up successfully</string>
 
     <!--  LoginFragment  -->
     <string name="login">Login</string>
@@ -52,6 +53,8 @@
 
     <!--  Profile Fragment -->
     <string name="example_user_name">Emma Philips</string>
+    <string name="example_user_nickname">emma_phil_123</string>
+    <string name="example_user_age">25 y.o.</string>
     <string name="example_user_status">Big fan of Maths</string>
     <string name="example_user_phone">+380-123-4567</string>
     <string name="example_user_email">example@gmail.com</string>
@@ -59,6 +62,9 @@
     <string name="activity">Activity</string>
     <string name="settings">Settings</string>
     <string name="log_out">Log Out</string>
+    <string name="full_name_placeholders">%1%s %2$s</string>
+    <string name="user_age_placeholders">%1$d y.o.</string>
+    <string name="sign_out_successfully">You\'ve been signed out</string>
 
     <!--  Custom Text Layout  -->
     <string name="toast_text_example">Lorem Ipsum is simply dummy text</string>
@@ -73,5 +79,17 @@
     <string name="btn_post">Post</string>
     <string name="btn_delete">Delete</string>
     <string name="note_posted_successful">Your note has been posted successfully!</string>
+    <string name="note_delayed">Your note has been delayed in %1$d</string>
     <string name="note_deleted">Your note has been deleted</string>
+    <string name="note_was_not_posted">Error while posting note</string>
+
+    <!-- Posted Note Fragment   -->
+    <string name="hide_btn">Hide Note</string>
+    <string name="liked_count">Liked: %1$d</string>
+    <string name="comments_count">Commented: %1$d</string>
+    <string name="note_is_hidden">Your note is hidden</string>
+    <string name="warning">Warning</string>
+    <string name="do_you_want_to_hide_note">Do you really want to hide this note?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

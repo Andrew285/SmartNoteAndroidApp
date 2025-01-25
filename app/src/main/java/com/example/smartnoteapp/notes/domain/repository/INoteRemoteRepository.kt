@@ -6,13 +6,13 @@ import com.example.smartnoteapp.notes.domain.models.Note
 
 interface INoteRemoteRepository {
 
-    suspend fun addNote(note: Note)
+    suspend fun addNote(note: Note): Result<Unit>
 
-    suspend fun editNote(note: Note)
+    suspend fun editNote(note: Note): Result<NoteRemote?>
 
-    suspend fun deleteNote(noteId: Int)
+    suspend fun deleteNote(noteId: Int): Result<NoteRemote?>
 
-    suspend fun getNoteById(noteId: Int): Note
+    suspend fun getNoteById(noteId: Int): NoteRemote
 
     suspend fun getAllNotes(): List<Note>
 

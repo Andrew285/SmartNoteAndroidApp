@@ -4,8 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.smartnoteapp.notes.domain.models.Note
-import com.example.smartnoteapp.notes.domain.usecases.notes.GetNotePagingDataUseCase
+import com.example.smartnoteapp.notes.domain.usecases.remote_notes.GetNotePagingDataUseCase
 import com.example.smartnoteapp.core.presentation.states.UiState
 import com.example.smartnoteapp.notes.data.models.remote.NoteRemote
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -44,6 +43,7 @@ class HomeViewModel @Inject constructor(
                     .collect { pagingData ->
                         updateState(UiState.Success(pagingData))
                     }
+
             } catch (e: Exception) {
                 updateState(UiState.Error(e.message ?: "Unknown Error"))
             }
