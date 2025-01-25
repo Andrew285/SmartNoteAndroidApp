@@ -1,11 +1,18 @@
 package com.example.smartnoteapp.notes.data.repository
 
+import android.net.Uri
 import android.util.Log
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingSourceFactory
 import com.example.smartnoteapp.notes.data.models.converters.Converters.mapToRemote
+import com.example.smartnoteapp.notes.data.models.remote.NoteRemote
+import com.example.smartnoteapp.notes.data.sources.remote.NotesRemotePagingSource
 import com.example.smartnoteapp.notes.domain.models.Note
 import com.example.smartnoteapp.notes.domain.repository.INoteRemoteRepository
 import com.example.smartnoteapp.notes.utils.NoteConstants.LOG_FIREBASE_FIRESTORE
 import com.example.smartnoteapp.notes.utils.NoteConstants.NOTES_COLLECTION
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -54,5 +61,13 @@ class NoteRemoteRepository: INoteRemoteRepository {
                 Log.w(LOG_FIREBASE_FIRESTORE, "Error getting documents.", exception)
             }
         return notes
+    }
+
+    override suspend fun getNotesPagingData(): Pager<Int, NoteRemote> {
+        val query = noteCollection.orderBy("timestamp", Query.Direction.DESCENDING)
+        return Pager(
+            config = PagingConfig(10, 10, enablePlaceholders = false),
+            pagingSourceFactory = PagingSourceFactory { NotesRemotePagingSource(query) }
+        )
     }
 }

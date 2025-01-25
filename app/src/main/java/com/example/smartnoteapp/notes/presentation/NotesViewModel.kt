@@ -66,14 +66,14 @@ class NotesViewModel @Inject constructor(
 //
 
     fun deleteNote(noteId: Long) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             deleteNoteUseCase(noteId)
             loadNotes()
         }
     }
 
     fun postNote(note: Note) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             postNoteUseCase(note)
         }
     }

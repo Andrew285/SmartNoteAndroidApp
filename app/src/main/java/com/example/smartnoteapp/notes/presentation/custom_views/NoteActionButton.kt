@@ -13,7 +13,7 @@ class NoteActionButton @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private val imageView: ImageView
+    private lateinit var imageView: ImageView
     private val textView: TextView
 
     var text: String
@@ -33,13 +33,7 @@ class NoteActionButton @JvmOverloads constructor(
         val textSize = typedArray.getDimension(R.styleable.ActionButtonView_actionTextSize, 14f)
         typedArray.recycle()
 
-        imageView = ImageView(context).apply {
-            setImageResource(icon)
-            layoutParams = LayoutParams(
-                context.resources.getDimensionPixelSize(R.dimen.note_action_image_size),
-                context.resources.getDimensionPixelSize(R.dimen.note_action_image_size)
-            )
-        }
+        setImage(icon)
 
         textView = TextView(context).apply {
             this.text = text
@@ -49,5 +43,15 @@ class NoteActionButton @JvmOverloads constructor(
 
         addView(imageView)
         addView(textView)
+    }
+
+    fun setImage(icon: Int) {
+        imageView = ImageView(context).apply {
+            setImageResource(icon)
+            layoutParams = LayoutParams(
+                context.resources.getDimensionPixelSize(R.dimen.note_action_image_size),
+                context.resources.getDimensionPixelSize(R.dimen.note_action_image_size)
+            )
+        }
     }
 }

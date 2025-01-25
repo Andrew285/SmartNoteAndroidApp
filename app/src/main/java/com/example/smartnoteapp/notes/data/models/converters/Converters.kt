@@ -9,6 +9,7 @@ import com.example.smartnoteapp.notes.domain.models.Note
 import com.example.smartnoteapp.notes.utils.NoteConstants
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.tasks.await
 
 object Converters {
 
@@ -44,6 +45,25 @@ object Converters {
             commentsCount = this.commentsCount,
             categories = this.categories.map { category ->
                 categoryCollection.document(category.id.toString())
+            }
+        )
+    }
+
+    suspend fun NoteRemote.mapToNote(): Note {
+        val firestoreDb = Firebase.firestore
+        val categoryCollection = firestoreDb.collection(NoteConstants.CATEGORIES_COLLECTION)
+
+        return Note(
+            id = this.id,
+            title = this.title,
+            description = this.description,
+            timestamp = this.timestamp,
+            image = this.image,
+            likesCount = this.likesCount,
+            commentsCount = this.commentsCount,
+            categories = this.categories!!.mapNotNull { categoryDocRef ->
+                val categorySnapshot = categoryCollection.document(categoryDocRef.toString()).get().await()
+                categorySnapshot.toObject(Category::class.java)
             }
         )
     }

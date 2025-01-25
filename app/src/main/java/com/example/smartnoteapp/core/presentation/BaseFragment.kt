@@ -1,23 +1,64 @@
 package com.example.smartnoteapp.core.presentation
 
+import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import com.example.smartnoteapp.core.utils.CustomToast
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.smartnoteapp.core.presentation.states.UiState
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
-class BaseFragment: Fragment() {
+abstract class BaseFragment<T>: Fragment() {
 
-    fun observeStatus(status: LiveData<OperationStatus>) {
-        status.observe(viewLifecycleOwner) { status ->
-            when (status) {
-                is OperationStatus.Success -> showStatus(status.message, CustomToast.ToastType.SUCCESS)
-                is OperationStatus.Error -> showStatus(status.message, CustomToast.ToastType.ERROR)
-                is OperationStatus.Info -> showStatus(status.message, CustomToast.ToastType.INFO)
-                OperationStatus.Loading -> showStatus("", CustomToast.ToastType.INFO)
+    abstract val stateFlow: StateFlow<UiState<T>>
+    protected var swipeRefreshLayout: SwipeRefreshLayout? = null
+
+    abstract fun handleLoading()
+    abstract fun handleSuccess(data: T)
+    abstract fun handleError(message: String)
+    abstract fun handleRefresh()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setObservables()
+        setRefreshLayoutListener()
+    }
+
+    private fun setObservables() {
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                stateFlow.collect { state ->
+                    when (state) {
+                        is UiState.Loading -> {
+                            setRefreshing(true)
+                            handleLoading()
+                        }
+                        is UiState.Success -> {
+                            setRefreshing(false)
+                            handleSuccess(state.data)
+                        }
+                        is UiState.Error -> {
+                            setRefreshing(false)
+                            handleError(state.message)
+                        }
+                        else -> {}
+                    }
+                }
             }
         }
     }
 
-    private fun showStatus(message: String, type: CustomToast.ToastType) {
-        CustomToast.makeText(requireContext(), message, type)
+    private fun setRefreshLayoutListener() {
+        swipeRefreshLayout?.setOnRefreshListener {
+            handleRefresh()
+        }
+    }
+
+    protected fun setRefreshing(isRefreshing: Boolean) {
+        swipeRefreshLayout?.isRefreshing = isRefreshing
     }
 }

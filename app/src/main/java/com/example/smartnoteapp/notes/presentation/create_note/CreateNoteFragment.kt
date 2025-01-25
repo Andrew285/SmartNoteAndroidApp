@@ -16,8 +16,10 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.smartnoteapp.R
 import com.example.smartnoteapp.core.utils.BitmapConverter
+import com.example.smartnoteapp.core.utils.CustomToast
 import com.example.smartnoteapp.databinding.FragmentCreateNoteBinding
 import com.example.smartnoteapp.notes.domain.models.Category
 import com.example.smartnoteapp.notes.domain.models.Note
@@ -66,8 +68,7 @@ class CreateNoteFragment : Fragment() {
                         categories = categories
                     )
 
-                    createNoteViewModel.notesViewModel.addNote(note)
-                    Toast.makeText(requireContext(), "Successfully created!", Toast.LENGTH_SHORT).show()
+                    addNote(note)
                 }
             }
 
@@ -90,6 +91,12 @@ class CreateNoteFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun addNote(note: Note) {
+        createNoteViewModel.notesViewModel.addNote(note)
+        CustomToast.makeText(requireContext(), getString(R.string.note_added_successfully), CustomToast.ToastType.SUCCESS)
+        findNavController().navigate(R.id.action_createNoteFragment_to_myNotesFragment)
     }
 
     private fun areFieldsNotEmpty(vararg editTexts: EditText): Boolean {

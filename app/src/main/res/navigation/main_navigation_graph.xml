@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_favourites" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.smartnoteapp.home.presentation.HomeFragment"
+        android:name="com.example.smartnoteapp.notes.presentation.home_notes.HomeFragment"
         android:label="fragment_posts"
         tools:layout="@layout/fragment_home" />
     <fragment
@@ -39,7 +39,11 @@
         android:id="@+id/createNoteFragment"
         android:name="com.example.smartnoteapp.notes.presentation.create_note.CreateNoteFragment"
         android:label="fragment_create_note"
-        tools:layout="@layout/fragment_create_note" />
+        tools:layout="@layout/fragment_create_note" >
+        <action
+            android:id="@+id/action_createNoteFragment_to_myNotesFragment"
+            app:destination="@id/myNotesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myNotesFragment"
         android:name="com.example.smartnoteapp.notes.presentation.my_notes.MyNotesFragment"

@@ -1,5 +1,7 @@
 package com.example.smartnoteapp.notes.domain.repository
 
+import androidx.paging.Pager
+import com.example.smartnoteapp.notes.data.models.remote.NoteRemote
 import com.example.smartnoteapp.notes.domain.models.Note
 
 interface INoteRemoteRepository {
@@ -14,4 +16,5 @@ interface INoteRemoteRepository {
 
     suspend fun getAllNotes(): List<Note>
 
+    suspend fun getNotesPagingData(): Pager<Int, NoteRemote>
 }

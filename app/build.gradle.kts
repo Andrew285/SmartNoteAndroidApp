@@ -56,8 +56,15 @@ kapt {
 
 dependencies {
 
+    // SwipeRefreshLayout
+    implementation(libs.androidx.swiperefreshlayout)
+
+    // Paging Library
+    implementation(libs.androidx.paging.runtime)
+
     // Glide Library
     implementation(libs.glide)
+    implementation(libs.firebase.storage.ktx)
     annotationProcessor(libs.compiler)
 
     // Picasso Library
@@ -91,8 +98,8 @@ dependencies {
     kapt(libs.hilt.android.compiler)
 
     //Kotlin Coroutines
+    implementation(libs.jetbrains.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     // Navigation
     implementation(libs.androidx.navigation.fragment)
@@ -100,6 +107,9 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

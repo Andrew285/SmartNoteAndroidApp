@@ -44,6 +44,10 @@ class ProfileFragment : Fragment() {
             settingsContainer.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_settingsFragment)
             }
+
+            logoutContainer.setOnClickListener {
+
+            }
         }
 
         return binding.root
