@@ -67,7 +67,11 @@ SmartNotes is a social media application designed for knowledge sharing and lear
 
 ## 📸 Screenshots
 
-*Add screenshots of your app here*
+<img src="https://github.com/user-attachments/assets/b26b8bdd-75cf-402c-a877-83b6c1b84bc9" alt="Alt Text" width="300">
+<img src="https://github.com/user-attachments/assets/4e43e6a7-c373-4c3d-98f6-53eaa1152f45" alt="Alt Text" width="300">
+<img src="https://github.com/user-attachments/assets/4858bc86-ad8f-44da-b5fc-d57dc324dd0c" alt="Alt Text" width="300">
+<img src="https://github.com/user-attachments/assets/55727078-79dc-4722-b00b-4e7374f32c9e" alt="Alt Text" width="300">
+<img src="https://github.com/user-attachments/assets/cbbfffc9-df18-4108-82d9-aaf0fb3e5f85" alt="Alt Text" width="300">
 
 ## 📋 License
 
