@@ -3,6 +3,7 @@
 ## 🚀 Project Overview
 
 SmartNotes is a social media application designed for knowledge sharing and learning. Inspired by Threads and Twitter, it allows users to create and explore smart notes across various academic and professional categories.
+This project is made in educational purposes.
 
 ## 📌 Key Features
 
@@ -50,9 +51,10 @@ SmartNotes is a social media application designed for knowledge sharing and lear
 - [ ] Advanced search functionality
 - [ ] User profile customization
 - [ ] Recommendation algorithm
+- [ ] Filter notes by category, name, etc
+- [ ] Settings screen to configure theme, language
 
 ### 🎯 Future Enhancements
-- [ ] Machine learning content recommendations
 - [ ] Advanced analytics
 - [ ] Multi-language support
 - [ ] Dark/Light mode themes
@@ -73,11 +75,16 @@ SmartNotes is a social media application designed for knowledge sharing and lear
 <img src="https://github.com/user-attachments/assets/55727078-79dc-4722-b00b-4e7374f32c9e" alt="Alt Text" width="300">
 <img src="https://github.com/user-attachments/assets/cbbfffc9-df18-4108-82d9-aaf0fb3e5f85" alt="Alt Text" width="300">
 
+## 🎥 Video
+
+https://github.com/user-attachments/assets/8fa8aa6f-0ddf-4411-921e-d9592ee9eec2
+
+
 ## 📋 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📞 Contact
 
-Your Name - [Your Email]
-Project Link: [Repository URL]
+Your Name - [andriyk116@gmail.com]
+Project Link: [https://github.com/Andrew285/SmartNoteAndroidApp/]
