@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity() {
                     findNavController(R.id.fragmentMainContainerView).navigate(R.id.homeFragment)
                     true
                 }
-                R.id.item_search -> {
-                    findNavController(R.id.fragmentMainContainerView).navigate(R.id.searchFragment)
+                R.id.item_videos -> {
+                    findNavController(R.id.fragmentMainContainerView).navigate(R.id.videosFragment)
                     true
                 }
                 R.id.item_create_note -> {
@@ -64,6 +64,5 @@ class MainActivity : AppCompatActivity() {
             != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
         }
-
     }
 }

@@ -102,4 +102,9 @@
             android:name="note"
             app:argType="com.example.smartnoteapp.notes.domain.models.Note" />
     </fragment>
+    <fragment
+        android:id="@+id/videosFragment"
+        android:name="com.example.smartnoteapp.videos.presentation.VideosFragment"
+        android:label="fragment_videos"
+        tools:layout="@layout/fragment_videos" />
 </navigation>

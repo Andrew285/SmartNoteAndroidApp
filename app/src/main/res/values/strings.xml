@@ -26,7 +26,7 @@
 
     <!--  Bottom Navigation Bar  -->
     <string name="bottom_nav_home">Home</string>
-    <string name="bottom_nav_search">Search</string>
+    <string name="bottom_videos">Videos</string>
     <string name="bottom_nav_add_note">Add Note</string>
     <string name="bottom_nav_favourites">Favourites</string>
     <string name="bottom_nav_profile">Profile</string>
@@ -92,4 +92,7 @@
     <string name="do_you_want_to_hide_note">Do you really want to hide this note?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+
+    <!-- Posted Note Fragment   -->
+    <string name="video_title_example">Video Title Example</string>
 </resources>

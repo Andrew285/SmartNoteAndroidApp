@@ -5,9 +5,9 @@
         android:title="@string/bottom_nav_home"
         android:icon="@drawable/home"/>
     <item
-        android:id="@+id/item_search"
-        android:title="@string/bottom_nav_search"
-        android:icon="@drawable/magnifying_glass"/>
+        android:id="@+id/item_videos"
+        android:title="@string/bottom_videos"
+        android:icon="@drawable/video_icon"/>
     <item
         android:id="@+id/item_create_note"
         android:title="@string/bottom_nav_add_note"
