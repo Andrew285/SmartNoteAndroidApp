@@ -7,17 +7,23 @@ import androidx.paging.cachedIn
 import com.example.smartnoteapp.notes.domain.usecases.remote_notes.GetNotePagingDataUseCase
 import com.example.smartnoteapp.core.presentation.states.UiState
 import com.example.smartnoteapp.notes.data.models.remote.NoteRemote
+import com.example.smartnoteapp.notes.domain.models.Category
+import com.example.smartnoteapp.notes.domain.usecases.categories.GetCategoryByNameUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getNotePagingDataUseCase: GetNotePagingDataUseCase
+    private val getNotePagingDataUseCase: GetNotePagingDataUseCase,
+    private val getCategoryByNameUseCase: GetCategoryByNameUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<UiState<PagingData<NoteRemote>>>(UiState.Empty())
@@ -31,6 +37,17 @@ class HomeViewModel @Inject constructor(
         _state.value = newState
     }
 
+    fun getCategoryByName(name: String, onResult: (Category) -> Unit) {
+        viewModelScope.launch {
+            val category = getCategoryByNameUseCase(name)
+            val color = category?.color ?: "#FFFFFF"
+            withContext(Dispatchers.Main) {
+                if (category != null) {
+                    onResult(category)
+                }
+            }
+        }
+    }
     fun getNotes() {
         viewModelScope.launch {
             try {

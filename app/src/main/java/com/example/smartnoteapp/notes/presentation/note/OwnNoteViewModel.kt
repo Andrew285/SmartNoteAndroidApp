@@ -13,6 +13,7 @@ import com.example.smartnoteapp.notes.domain.models.Note
 import com.example.smartnoteapp.notes.domain.usecases.local_notes.DeleteNoteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -62,7 +63,7 @@ class OwnNoteViewModel @Inject constructor(
     }
 
     fun deleteNote(noteId: Long) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             deleteNoteUseCase(noteId)
         }
     }

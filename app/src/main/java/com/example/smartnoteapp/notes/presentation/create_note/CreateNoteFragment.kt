@@ -47,10 +47,10 @@ class CreateNoteFragment : Fragment() {
         binding = FragmentCreateNoteBinding.inflate(layoutInflater)
 
         lifecycleScope.launch {
-            createNoteViewModel.categoriesViewModel.loadCategories()
+            createNoteViewModel.loadCategories()
         }
 
-        createNoteViewModel.categoriesViewModel.categories.observe(viewLifecycleOwner) {
+        createNoteViewModel.categories.observe(viewLifecycleOwner) {
             addCategoriesAsChips(it, binding.categoriesChipGroup)
             binding.categoriesContainer.visibility = View.VISIBLE
         }
@@ -96,7 +96,7 @@ class CreateNoteFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.Q)
     private fun addNote(note: Note) {
-        createNoteViewModel.notesViewModel.addNote(note)
+        createNoteViewModel.addNote(note)
         CustomToast.makeText(requireContext(), getString(R.string.note_added_successfully), CustomToast.ToastType.SUCCESS)
         findNavController().navigate(R.id.action_createNoteFragment_to_myNotesFragment)
     }

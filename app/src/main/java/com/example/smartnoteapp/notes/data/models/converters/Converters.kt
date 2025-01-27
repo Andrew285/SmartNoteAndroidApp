@@ -44,7 +44,7 @@ object Converters {
             likesCount = this.likesCount,
             commentsCount = this.commentsCount,
             categories = this.categories.map { category ->
-                categoryCollection.document(category.id.toString())
+                category.name
             }
         )
     }
@@ -61,8 +61,8 @@ object Converters {
             image = this.image,
             likesCount = this.likesCount,
             commentsCount = this.commentsCount,
-            categories = this.categories!!.mapNotNull { categoryDocRef ->
-                val categorySnapshot = categoryCollection.document(categoryDocRef.toString()).get().await()
+            categories = this.categories!!.mapNotNull { categoryName ->
+                val categorySnapshot = categoryCollection.document(categoryName).get().await()
                 categorySnapshot.toObject(Category::class.java)
             }
         )

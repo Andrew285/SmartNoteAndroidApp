@@ -33,7 +33,7 @@ class MyNotesFragment : Fragment(), OnItemViewClicked {
         binding.notesRecylerView.layoutManager = LinearLayoutManager(requireContext())
         binding.notesRecylerView.adapter = notesAdapter
 
-        myNotesViewModel.notesViewModel.notes.observe(viewLifecycleOwner) { it ->
+        myNotesViewModel.notes.observe(viewLifecycleOwner) { it ->
             noteList = it
             notesAdapter.updateData(it)
         }
@@ -44,7 +44,7 @@ class MyNotesFragment : Fragment(), OnItemViewClicked {
     }
 
     private fun loadData() {
-        myNotesViewModel.notesViewModel.loadNotes()
+        myNotesViewModel.loadNotes()
         notesAdapter.notifyDataSetChanged()
     }
 

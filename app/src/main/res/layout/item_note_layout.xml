@@ -50,6 +50,11 @@
 
             </LinearLayout>
 
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/categoriesChipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <include
                 layout="@layout/simple_note_layout"/>
 

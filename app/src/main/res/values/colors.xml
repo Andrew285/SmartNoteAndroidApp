@@ -10,4 +10,10 @@
     <color name="blue">#2659B3</color>
     <color name="light_blue">#587AE0</color>
     <color name="transparent">#00000000</color>
+
+    <!-- category colors   -->
+    <color name="blue_category">#924A6FDB</color>
+    <color name="gray_category">#92B6B7C7</color>
+    <color name="red_category">#92BD2929</color>
+    <color name="yellow_category">#92D0AC41</color>
 </resources>

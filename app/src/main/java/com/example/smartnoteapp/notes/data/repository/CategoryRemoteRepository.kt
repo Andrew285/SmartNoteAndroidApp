@@ -17,15 +17,16 @@ class CategoryRemoteRepository: ICategoryRemoteRepository {
     override suspend fun getCategoryByName(categoryName: String): Category? {
         return try {
             // Perform the query and await the result
-            val result = categoriesCollection
-                .whereEqualTo("name", categoryName)
+            val documentSnapshot = categoriesCollection
+                .document(categoryName)
                 .get()
-                .await()  // Wait for the result
+                .await()
 
-            if (result.documents.isNotEmpty()) {
-                result.documents[0].toObject<Category>()  // Return the first category found
+            // Check if the document exists
+            if (documentSnapshot.exists()) {
+                documentSnapshot.toObject(Category::class.java)
             } else {
-                null  // Return null if no category found
+                null
             }
         } catch (e: Exception) {
             Log.d(LOG_FIREBASE_FIRESTORE, "Error getting categories", e)

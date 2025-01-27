@@ -40,7 +40,7 @@ class HomeFragment : BaseFragment<PagingData<NoteRemote>>(), OnItemViewClicked {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         swipeRefreshLayout = binding.homeSwipeRefreshLayout
 
-        notesAdapter = NotePagingAdapter(this)
+        notesAdapter = NotePagingAdapter(this, homeViewModel)
 
         with (binding) {
             notesRecyclerView.adapter = notesAdapter

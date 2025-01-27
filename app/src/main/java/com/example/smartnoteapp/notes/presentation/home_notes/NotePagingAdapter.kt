@@ -1,5 +1,8 @@
 package com.example.smartnoteapp.notes.presentation.home_notes
 
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,13 +16,18 @@ import com.example.smartnoteapp.R
 import com.example.smartnoteapp.core.presentation.OnItemViewClicked
 import com.example.smartnoteapp.core.utils.BitmapConverter
 import com.example.smartnoteapp.notes.data.models.remote.NoteRemote
+import com.example.smartnoteapp.notes.domain.usecases.categories.GetCategoryByNameUseCase
 import com.example.smartnoteapp.notes.presentation.custom_views.NoteActionButton
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NotePagingAdapter(
-    private val onItemClicked: OnItemViewClicked
+class NotePagingAdapter @Inject constructor(
+    private val onItemClicked: OnItemViewClicked,
+    private val viewModel: HomeViewModel
 ): PagingDataAdapter<NoteRemote,NotePagingAdapter.NoteViewHolder>(NoteDiffCallback) {
 
     object NoteDiffCallback : DiffUtil.ItemCallback<NoteRemote>() {
@@ -33,19 +41,37 @@ class NotePagingAdapter(
         val photoImageView: ImageView = itemView.findViewById(R.id.photoImageView)
         val likeActionBtn: NoteActionButton = itemView.findViewById(R.id.likeActionBtn)
         val commentActionBtn: NoteActionButton = itemView.findViewById(R.id.commentActionBtn)
+        val categoriesChipGroup: ChipGroup = itemView.findViewById(R.id.categoriesChipGroup)
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val currentNote = getItem(position)
 
         with (holder) {
-            currentNote?.let {
-                titleTextView.text = currentNote.title
-                descriptionTextView.text = currentNote.description
-                likeActionBtn.text = currentNote.likesCount.toString()
-                commentActionBtn.text = currentNote.commentsCount.toString()
+            currentNote?.let { it ->
+                titleTextView.text = it.title
+                descriptionTextView.text = it.description
+                likeActionBtn.text = it.likesCount.toString()
+                commentActionBtn.text = it.commentsCount.toString()
 
-                currentNote.image.let { image ->
+                categoriesChipGroup.removeAllViews()
+
+                it.categories?.forEach { categoryName ->
+                    CoroutineScope(Dispatchers.Main).launch {
+                        viewModel.getCategoryByName(categoryName) { it ->
+                            val chip = Chip(itemView.context).apply {
+                                text = it.name
+                                isCloseIconVisible = false
+                                isClickable = true
+                                isCheckable = false
+                                chipBackgroundColor = ColorStateList.valueOf(Color.parseColor(it.color.toString())) // Apply color
+                            }
+                            categoriesChipGroup.addView(chip)
+                        }
+                    }
+                }
+
+                it.image.let { image ->
                     if (image.contains("http")) {
                         Glide.with(itemView.context)
                             .load(image)
